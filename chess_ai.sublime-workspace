@@ -1,0 +1,537 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"oper",
+				"operator"
+			],
+			[
+				"cur",
+				"current_vehicle"
+			],
+			[
+				"ve",
+				"vehicle"
+			],
+			[
+				"v",
+				"v_id"
+			],
+			[
+				"user",
+				"user_id"
+			],
+			[
+				"e",
+				"execute"
+			],
+			[
+				"flask",
+				"flask_color"
+			],
+			[
+				"vh",
+				"vehicle_id"
+			],
+			[
+				"use",
+				"user_schema"
+			],
+			[
+				"veh",
+				"vehicle_schema"
+			],
+			[
+				"en",
+				"enforce_data_and_types"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"prod",
+				"prod_table_name"
+			],
+			[
+				"pro",
+				"prod_table_name"
+			],
+			[
+				"dev",
+				"dev_table_name"
+			],
+			[
+				"vehicle",
+				"vehicle_id"
+			],
+			[
+				"histor",
+				"history_lengths"
+			],
+			[
+				"should",
+				"should_update"
+			],
+			[
+				"da",
+				"data_file_name"
+			],
+			[
+				"pa",
+				"palindrome_test_data"
+			],
+			[
+				"palin",
+				"palindrome"
+			],
+			[
+				"data",
+				"data_file"
+			],
+			[
+				"dat",
+				"data_file_name"
+			],
+			[
+				"fil",
+				"file_name"
+			],
+			[
+				"fi",
+				"file_name"
+			],
+			[
+				"get",
+				"get_palindrome_list"
+			],
+			[
+				"pal",
+				"palindromes"
+			],
+			[
+				"Pa",
+				"PalindromeChecker"
+			],
+			[
+				"a",
+				"amicables"
+			],
+			[
+				"d",
+				"divisors"
+			],
+			[
+				"plt",
+				"plot_multiple"
+			],
+			[
+				"sin",
+				"sin_wave_1"
+			],
+			[
+				"test",
+				"test_gui"
+			],
+			[
+				"co",
+				"corner_pos"
+			],
+			[
+				"create_",
+				"create_oval"
+			],
+			[
+				"x",
+				"XORseries"
+			],
+			[
+				"de",
+				"denominator"
+			],
+			[
+				"com",
+				"common_denom"
+			],
+			[
+				"add",
+				"addtoArray"
+			],
+			[
+				"org",
+				"org_list"
+			],
+			[
+				"p",
+				"printWord"
+			],
+			[
+				"F",
+				"FINAL_WORD"
+			],
+			[
+				"O",
+				"ORG_NUMBER"
+			],
+			[
+				"t",
+				"total_dist"
+			],
+			[
+				"wor",
+				"word_length"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 78,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "main.py",
+			"settings":
+			{
+				"buffer_size": 25,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "main.py"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/davidferris/Documents/Personal/Software/chess_ai"
+	],
+	"file_history":
+	[
+		"/Users/davidferris/Documents/School/4A/ME599/mapping_and_carshare/api/test.py",
+		"/Users/davidferris/Desktop/test.py",
+		"/Users/davidferris/Documents/School/4A/ME599/mapping_and_carshare/api/lib.py",
+		"/Users/davidferris/Desktop/carshare_data/car1.json",
+		"/Users/davidferris/Desktop/demo/car1.json",
+		"/Users/davidferris/Desktop/group22_DT_79.jpg",
+		"/Users/davidferris/Desktop/group22_DT_95",
+		"/Users/davidferris/Documents/School/4A/ME599/mapping_and_carshare/api/db_connector.py",
+		"/Users/davidferris/Documents/School/4A/ME599/mapping_and_carshare/client/requirements.txt",
+		"/Users/davidferris/Documents/School/4A/ME599/mapping_and_carshare/client/client.py",
+		"/Users/davidferris/Downloads/CreateTablesLab2.sql",
+		"/Users/davidferris/Downloads/q2_setup.sql",
+		"/Users/davidferris/Downloads/midterm_practice.sql",
+		"/Users/davidferris/Downloads/createTables (1).sql",
+		"/Users/davidferris/Downloads/DDL-MySQL.sql",
+		"/Users/davidferris/Downloads/DDL-MySQL+drop.sql",
+		"/Users/davidferris/Downloads/createTables.sql",
+		"/Users/davidferris/Documents/Personal/Software/browser_signals_extension/options.js",
+		"/Users/davidferris/Downloads/popup.html",
+		"/Users/davidferris/Documents/Personal/Software/browser_signals_extension/runtime.js",
+		"/Users/davidferris/Documents/Personal/Software/pid_demo/pid.js",
+		"/Users/davidferris/Documents/Personal/Software/pid_demo/pid_style.css",
+		"/Users/davidferris/Documents/Personal/Software/pid_demo/index.html",
+		"/Users/davidferris/Downloads/FUCK (1).m",
+		"/Users/davidferris/Desktop/mte360_lab3_notes.txt",
+		"/Users/davidferris/Desktop/mte360_lab3_script.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/app/palindrome.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/app/server.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/data/data.txt",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/main.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/requirements.txt",
+		"/System/Library/Frameworks/GameController.framework/Versions/A/Headers/GCMicroGamepad.h",
+		"/Users/davidferris/Documents/Coop/Deep Learning/deeplearni.ng_challenge/app/server.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/README.md",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/data/test_data.txt",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/test.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/app/__init__.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/.gitignore",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/data.txt",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/deeplearni.ng_challenge/json_reader.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/project_euler/q21.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/report_prototypes/rms_pca_comparison.py",
+		"/Users/davidferris/Downloads/tandf_ujrs2042_106.bib",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/rms_pca_comparison.py",
+		"/Users/davidferris/Documents/Personal/Software/machine_learning/airhockey_ai/airhockey.py",
+		"/Users/davidferris/Documents/Personal/Software/machine_learning/airhockey_ai/test.py",
+		"/Users/davidferris/Documents/Personal/Software/machine_learning/README.md",
+		"/Users/davidferris/Documents/Personal/Software/machine_learning/.gitignore",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/openai-gym/gym-test.py",
+		"/usr/include/sys/loadable_fs.h",
+		"/Users/davidferris/Documents/Personal/Software/art_gallery_game/index.html",
+		"/Users/davidferris/Documents/Personal/Software/art_gallery_game/styles.css",
+		"/Users/davidferris/Documents/Personal/Software/art_gallery_game/README.md",
+		"/Users/davidferris/Documents/Personal/Software/art_gallery_game/index2.html",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/api/data.py",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/api/dsp/butterworth.py",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/api/dsp/__init__.py",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/api/temp/test.py",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/api/extractors/yahoo/__init__.py",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/Procfile",
+		"/Users/davidferris/Documents/Personal/Software/bitguava/app.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/genetic_algorithms/genetic_test_2.py",
+		"/Users/davidferris/Documents/Personal/Software/miscellaneous/genetic_algorithms/genetic_test.py",
+		"/Users/davidferris/Documents/Personal/Software/genetic_algorithms/genetic_test.py",
+		"/Users/davidferris/Documents/Personal/Software/genetic_test.py"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "README.md",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 78,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 25,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25,
+								25
+							]
+						],
+						"settings":
+						{
+							"auto_name": "main.py",
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 267.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "chess_ai.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/Personal/Software/genetic_algorithms/genetic_test_2.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 238.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

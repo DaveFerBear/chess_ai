@@ -1,0 +1,12 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+
+	"settings": {
+    	"python_interpreter": "/Users/davidferris/envs/python3/bin/python"
+	}
+}
