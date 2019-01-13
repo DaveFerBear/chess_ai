@@ -6,9 +6,17 @@ if __name__ == '__main__':
 	engine = RandomEngine()
 	
 	game_over = False
-	while not board.is_checkmate():
+	while not board.is_game_over():
 		print(board)
-		move = input('Enter UCI Move: ')
-		board.push_san(move)
+		text_in = input('Enter SAN Move: ')
+		
+		if text_in == 'exit':
+			exit()
+		
+		# Execue Move
+		try:
+			board.push_san(text_in)
+		except ValueError:
+			pass
 
 	print(board)
