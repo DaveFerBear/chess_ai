@@ -1,11 +1,13 @@
 import chess
+import utils
 
 class ChessTree(object):
     def __init__(self, board_state):
-        self.leaf_boards = []
-        self.board = board_state
-    
-    def generate_leaf_nodes(self):
+        self.leaf_boards = []     # list of ChessTree() objects
+        self.board = board_state  # chess.Board() object
+        self.strength = utils.board_strength_using_piece_weigths(self.board)
+
+    def generate_leaf_nodes(self, depth=1):
         if len(self.leaf_boards) is not 0:
             print("Re-generating leaf nodes.")
         
@@ -13,7 +15,10 @@ class ChessTree(object):
             new_board = self.board.copy(stack=True)
             new_board.push(m)
             leaf = ChessTree(new_board)
+            if depth > 1:
+                leaf.generate_leaf_nodes(depth-1)
             self.leaf_boards.append(leaf)
+            
 
 class ChessEngine(object):
     def __init__(self):
@@ -22,8 +27,7 @@ class ChessEngine(object):
 if __name__ == '__main__':
     b = chess.Board()
     ct = ChessTree(b)
-    ct.generate_leaf_nodes()
+    ct.generate_leaf_nodes(depth=2)
 
-    for m in ct.leaf_boards:
+    for m in ct.leaf_boards[0].leaf_boards:
         print(m.board)
-	
