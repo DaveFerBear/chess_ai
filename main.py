@@ -2,16 +2,18 @@ import chess
 
 class ChessTree(object):
     def __init__(self, board_state):
-        self.legal_moves = []
+        self.leaf_boards = []
         self.board = board_state
     
     def generate_leaf_nodes(self):
-        if len(self.legal_moves) is not 0:
+        if len(self.leaf_boards) is not 0:
             print("Re-generating leaf nodes.")
+        
         for m in self.board.legal_moves:
-            leaf = self.board.copy(stack=True)
-            leaf.push(m)
-            self.legal_moves.append(leaf)
+            new_board = self.board.copy(stack=True)
+            new_board.push(m)
+            leaf = ChessTree(new_board)
+            self.leaf_boards.append(leaf)
 
 class ChessEngine(object):
     def __init__(self):
@@ -21,4 +23,7 @@ if __name__ == '__main__':
     b = chess.Board()
     ct = ChessTree(b)
     ct.generate_leaf_nodes()
+
+    for m in ct.leaf_boards:
+        print(m.board)
 	
