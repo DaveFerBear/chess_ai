@@ -9,7 +9,7 @@ class Engine(object):
 		else:
 			self.board = chess.Board()
 
-		self.game_tree_root = GameTree(self.board)
+		self.game_tree = GameTree(self.board, chess.Move()) # Null move is root node state.
 
 	'''
 	params: chess.Board, chess.Color
@@ -18,22 +18,22 @@ class Engine(object):
 	def update_move(self, board, move):
 		print('move')
 
-	def generate_legal_moves_and_update_game_tree(self, board, depth=1):
+	def generate_legal_moves_and_update_game_tree(self, depth=2):
 		if depth < 1:
 			return
 
-		if len(self.board.successors) != 0:
+		if len(self.game_tree.successors) != 0:
 			raise ValueError('Expected empty game tree successors but nodes exist.')
 
-		self.board.successors = [m for m in self.board.generate_legal_moves()]
+		self.game_tree.successors = [m for m in self.board.generate_legal_moves()]
 
-		for move in self.board.successors:
+		for move in self.game_tree.successors:
 			self.board.push(move)
-			generate_legal_moves_and_update_game_tree(self.board, depth=depth-1)
+			self.generate_legal_moves_and_update_game_tree(depth=depth-1)
 			self.board.pop() # Don't alter the current game board.
 
 	def get_game_tree(self):
-		return self.game_tree_root
+		return self.game_tree
 
 class RandomEngine(Engine):
 	def __init__(self):

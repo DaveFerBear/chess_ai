@@ -1,7 +1,6 @@
-from engine import RandomEngine
-import chess
+import test
 
-if __name__ == '__main__':
+def user_gameplay():
 	board = chess.Board()
 	engine = RandomEngine()
 	
@@ -12,7 +11,7 @@ if __name__ == '__main__':
 		
 		if text_in == 'exit':
 			exit()
-		
+
 		# Execue Move
 		try:
 			board.push_san(text_in)
@@ -20,3 +19,7 @@ if __name__ == '__main__':
 			pass
 
 	print(board)
+
+if __name__ == '__main__':
+	test.test_game_tree()
+	
