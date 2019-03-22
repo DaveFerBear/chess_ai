@@ -10,7 +10,7 @@ PIECE_WEIGHTS = {
 
 # Stronger for white -> (+)
 # Stronger for black -> (-)
-def board_strength_using_piece_weigths(board):
+def board_strength_using_piece_weights(board):
     strength = 0.0
     for piece in PIECE_WEIGHTS:
         strength += PIECE_WEIGHTS[piece]*len(board.pieces(piece, chess.WHITE))
