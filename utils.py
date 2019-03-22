@@ -24,13 +24,13 @@ Written as a util so any chess engines can use.
 '''
 def minimax(chess_tree, depth, is_maximizing_player=True, alpha=-float('inf'), beta=float('inf')):
     # If node has no children return its board value
-    if len(chess_tree.leaf_boards) == 0:
+    if len(chess_tree.leaf_nodes) == 0:
         return board_strength_using_piece_weights(chess_tree.board), chess_tree
     
     if is_maximizing_player:
         best_value = -float('inf') 
         best_board_state = None
-        for child in chess_tree.leaf_boards:
+        for child in chess_tree.leaf_nodes:
             value, state = minimax(child, depth + 1, False, alpha, beta)
             if value > best_value:
                 best_value = value
@@ -43,7 +43,7 @@ def minimax(chess_tree, depth, is_maximizing_player=True, alpha=-float('inf'), b
     else:
         best_value = float('inf') 
         best_board_state = None
-        for child in chess_tree.leaf_boards:
+        for child in chess_tree.leaf_nodes:
             value, state = minimax(child, depth + 1, True, alpha, beta)
             if value < best_value:
                 best_value = value
