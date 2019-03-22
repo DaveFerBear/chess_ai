@@ -1,4 +1,5 @@
 import chess
+import engine
 import utils
 
 class ChessTree(object):
@@ -19,42 +20,6 @@ class ChessTree(object):
                 leaf.generate_leaf_nodes(depth-1)
             self.leaf_boards.append(leaf)
 
-    def minimax(self, depth, is_maximizing_player=True, alpha=-float('inf'), beta=float('inf')):
-        # If node has no children return its board value
-        if len(self.leaf_boards) == 0:
-            return utils.board_strength_using_piece_weights(self.board), self
-        
-        if is_maximizing_player:
-            best_value = -float('inf') 
-            best_board_state = None
-            for child in self.leaf_boards:
-                value, state = child.minimax(depth + 1, False, alpha, beta)
-                if value > best_value:
-                    best_value = value
-                    best_board_state = state
-                alpha = max(alpha, best_value)
-                if beta <= alpha:
-                    break
-            return best_value, best_board_state
-
-        else:
-            best_value = float('inf') 
-            best_board_state = None
-            for child in self.leaf_boards:
-                value, state = child.minimax(depth + 1, True, alpha, beta)
-                if value < best_value:
-                    best_value = value
-                    best_board_state = state
-                beta = min(beta, best_value)
-                if beta <= alpha:
-                    break
-            return best_value, best_board_state
-            
-
-class ChessEngine(object):
-    def __init__(self):
-        pass
-
 if __name__ == '__main__':
     b = chess.Board()
     ct = ChessTree(b)
@@ -64,5 +29,5 @@ if __name__ == '__main__':
         print("---------current board state-------------")
         print(m.board)
         print("---------suggested next move-------------")
-        value, state = m.minimax(2)
+        value, state = utils.minimax(m, 2)
         print(state.board)
