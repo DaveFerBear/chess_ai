@@ -91,3 +91,19 @@ def get_move_to_next_state(current_board_state, next_board_state):
             if new_board_state == next_board_state:
                 return move
     return None
+
+
+'''
+Apply fuzzy logic to determine the phase of the game based on 
+remaining pieces and number of moves played
+'''
+def get_game_phase(current_board_state):
+    num_turns = current_board_state.fullmove_number
+    num_pieces = 0 #todo: count num pieces left on the board
+    # todo: use num_turns and num_pieces to determine stage of game
+    if num_turns < 3:
+        return "early"
+    elif num_pieces > 16:
+        return "mid"
+    else:
+        return "late"

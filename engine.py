@@ -32,6 +32,39 @@ class MiniMaxEngine(ChessEngine):
         move = utils.get_move_to_next_state(self.board, next_board_state)
         return move
 
+'''
+Mitch to add play method and description here
+'''
+class OpeningEngine(ChessEngine):
+    def __init__(self):
+        super()
+    
+    def play(self, chess_tree):
+        raise Exception("play() function needs to be implemented.")
 
-# More engines below, ex. RLEngine, GeneticEngine, etc.
-# ...
+'''
+Ross to add play method and description here
+'''
+class GeneticEngine(ChessEngine):
+    def __init__(self):
+        super()
+    
+    def play(self, chess_tree):
+        raise Exception("play() function needs to be implemented.")
+
+'''
+A combination of the Opening, Genetic, and MiniMax engines
+'''
+class HybridEngine(ChessEngine):
+    def __init__(self):
+        super()
+    
+    def play(self, chess_tree):
+        game_phase = utils.get_game_phase(self.board)
+
+        if game_phase == "early":
+            return OpeningEngine.play(self.board)
+        elif game_phase == "mid":
+            return GeneticEngine.play(self.board)
+        else:
+            return MiniMaxEngine.play(self.board)
