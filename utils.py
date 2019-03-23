@@ -41,9 +41,9 @@ def board_strength_using_legal_moves(board):
         # black has current move so player=black, opponent=white
         return num_opponent_legal_moves - num_player_legal_moves
 
-def weighted_board_strength(board):
-    # todo: add weights to each individual evaluation
-    return board_strength_using_piece_weights(board) + board_strength_using_legal_moves(board)
+def weighted_board_strength(board, α=1.0, β=1.0):
+    # TODO: tune weights.
+    return α*board_strength_using_piece_weights(board) + β*board_strength_using_legal_moves(board)
 
 '''
 Implementation of minimax with alpha-beta pruning.
