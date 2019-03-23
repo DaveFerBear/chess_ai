@@ -16,7 +16,9 @@ class RandomEngine(ChessEngine):
         super()
     
     def play(self, chess_tree):
-        return random.choice(chess_tree.leaf_boards)
+        next_board_state = random.choice(chess_tree.leaf_boards)
+        move = utils.get_move_to_next_state(self.board, next_board_state)
+        return move
 
 '''
 Engine using exclusively minimax with alpha-beta pruning.

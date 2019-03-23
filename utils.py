@@ -1,4 +1,5 @@
 import chess
+import random
 
 PIECE_WEIGHTS = {
     chess.PAWN: 1,
@@ -11,12 +12,38 @@ PIECE_WEIGHTS = {
 Stronger for white -> (+)
 Stronger for black -> (-)
 '''
+
+'''
+Count total material value of each player and return the difference
+'''
 def board_strength_using_piece_weights(board):
     strength = 0.0
     for piece in PIECE_WEIGHTS:
         strength += PIECE_WEIGHTS[piece]*len(board.pieces(piece, chess.WHITE))
         strength -= PIECE_WEIGHTS[piece]*len(board.pieces(piece, chess.BLACK))
     return strength
+
+'''
+Return the difference in number of available moves between each player
+Try a random move to check the number of legal moves of the opponent
+'''
+def board_strength_using_legal_moves(board):
+    num_player_legal_moves = len(board.legal_moves)
+    random_move = random.choice(board.legal_moves)
+    board.push(random_move)
+    num_opponent_legal_moves = len(board.legal_moves)
+    board.pop()
+
+    if board.turn:
+        # white has current move so player=white, opponent=black
+        return num_player_legal_moves - num_opponent_legal_moves
+    else:
+        # black has current move so player=black, opponent=white
+        return num_opponent_legal_moves - num_player_legal_moves
+
+def weighted_board_strength(board):
+    # todo: add weights to each individual evaluation
+    return board_strength_using_piece_weights(board) + board_strength_using_legal_moves(board)
 
 '''
 Implementation of minimax with alpha-beta pruning.
