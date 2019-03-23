@@ -26,8 +26,9 @@ class MiniMaxEngine(ChessEngine):
         super()
     
     def play(self, chess_tree):
-        value, state = utils.minimax(chess_tree, 2)
-        return state
+        value, next_board_state = utils.minimax(chess_tree, 2)
+        move = utils.get_move_to_next_state(self.board, next_board_state)
+        return move
 
 
 # More engines below, ex. RLEngine, GeneticEngine, etc.

@@ -52,3 +52,15 @@ def minimax(chess_tree, depth, is_maximizing_player=True, alpha=-float('inf'), b
             if beta <= alpha:
                 break
         return best_value, best_board_state
+
+'''
+Returns the move needed to transform current state to next state
+or None if no legal move exists
+'''
+def get_move_to_next_state(current_board_state, next_board_state):
+    for move in current_board_state.legal_moves:
+            new_board_state = current_board_state.copy(stack=True)
+            new_board_state.push(move)
+            if new_board_state == next_board_state:
+                return move
+    return None
