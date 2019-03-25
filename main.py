@@ -25,19 +25,13 @@ if __name__ == '__main__':
     ct = ChessTree(b)
     ct.generate_leaf_nodes(depth=3)
 
-    
-    b.push(chess.Move.from_uci("e2e4"))
-    print(b.ep_square)
-    b.push(chess.Move.from_uci("h7h5"))
-    print(b.ep_square)
-
-    # for m in ct.leaf_nodes[0].leaf_nodes:
-        #print("---------current board state-------------")
-        #print(m.board)
-        #print("---------suggested next state------------")
-        # value, state = utils.minimax(m, 2)
-        # print(state.board)
-        #print("---------recommended move----------------")
-        #move = utils.get_move_to_next_state(m.board, state.board)
-        # print(move)
-        # print(state.board.ep_square)
+    for m in ct.leaf_nodes[0].leaf_nodes:
+        print("---------current board state-------------")
+        print(m.board)
+        print("---------suggested next state------------")
+        value, state = utils.minimax(m, 2)
+        print(state.board)
+        print("---------recommended move----------------")
+        move = utils.get_move_to_next_state(m.board, state.board)
+        print(move)
+        print(state.board.ep_square)

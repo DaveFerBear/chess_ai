@@ -2,8 +2,8 @@ import pickle
 import re, os, time
 from random import triangular
 from math import floor
-import sunfish
-from PST import PST
+import Genetic.sunfish as sunfish
+from Genetic.PST import PST
 
 MAX_NUM_MOVES = 200
 SEARCH_TIME = 1
@@ -65,6 +65,12 @@ class Engine:
         new_move += str(8-int(move[3])+1)
         return new_move
 
+    # Convert python chess board to sunfish board
+    def pad_board(self, board):
+        b = str(board).replace(" ", "")
+        b = "         \n         \n " + b.replace("\n", "\n ") + "\n         \n         \n"
+        return b
+
     # 2 functions below act as the API
     # play_move returns the move
     # load_board coverts python chess board
@@ -75,6 +81,7 @@ class Engine:
 
     # Loads python chess board object
     def load_board(self, board):
+        b = self.pad_board(board)
         wc = (board.has_kingside_castling_rights(True), board.has_queenside_castling_rights(True))
         bc = (board.has_kingside_castling_rights(False), board.has_queenside_castling_rights(False))
         ep = None

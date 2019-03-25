@@ -1,6 +1,6 @@
 import utils
 import random
-import Genetic
+import Genetic.Genetic as Genetic
 
 class ChessEngine(object):
     def __init__(self):

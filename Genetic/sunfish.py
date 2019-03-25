@@ -4,7 +4,7 @@ from __future__ import print_function
 import re, sys, time
 from itertools import count
 from collections import OrderedDict, namedtuple
-from PST import PST
+from Genetic.PST import PST
 
 ###############################################################################
 # Piece-Square tables. Tune these to change sunfish's behaviour
