@@ -1,5 +1,6 @@
 import utils
 import random
+import Genetic
 
 class ChessEngine(object):
     def __init__(self):
@@ -48,9 +49,12 @@ Ross to add play method and description here
 class GeneticEngine(ChessEngine):
     def __init__(self):
         super()
+        self.engine = Genetic.Engine("Best")
     
     def play(self, chess_tree):
-        raise Exception("play() function needs to be implemented.")
+        self.engine.load_board(chess_tree.board)
+        move = self.engine.play_move(chess_tree.board.turn)
+        return utils.chess.Move.from_uci(move)
 
 '''
 A combination of the Opening, Genetic, and MiniMax engines
