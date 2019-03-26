@@ -97,13 +97,14 @@ def get_move_to_next_state(current_board_state, next_board_state):
 Apply fuzzy logic to determine the phase of the game based on 
 remaining pieces and number of moves played
 '''
-def get_game_phase(current_board_state):
+def get_game_phase_membership(current_board_state):
     num_turns = current_board_state.fullmove_number
-    num_pieces = 0 #todo: count num pieces left on the board
-    # todo: use num_turns and num_pieces to determine stage of game
-    if num_turns < 3:
-        return "early"
-    elif num_pieces > 16:
-        return "mid"
-    else:
-        return "late"
+    temp_board_state = current_board_state.copy(stack=True)
+    num_pieces = 0 
+    for square in range(0, 64):
+        if temp_board_state.remove_piece_at(square) != None:
+            num_pieces = num_pieces + 1
+    early_game_membership = ((num_pieces / 32) + 1 - min(1, num_turns / 20)) / 2
+    mid_game_membership = (0.5 + ((num_pieces - 16) / 32) + 1 - abs(num_turns - 10) / 10) / 2
+    late_game_membership = (1 - (num_pieces / 32) + min(1, num_turns / 20)) / 2
+    return (early_game_membership, mid_game_membership, late_game_membership)

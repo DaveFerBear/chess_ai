@@ -64,11 +64,16 @@ class HybridEngine(ChessEngine):
         super()
     
     def play(self, chess_tree):
-        game_phase = utils.get_game_phase(self.board)
+        membership = utils.get_game_phase_membership(self.board)
+        total = membership[0] + membership[1] + membership[2]
+        early_game_percentage = membership[0] / total
+        mid_game_percentage = membership[1] / total
 
-        if game_phase == "early":
-            return OpeningEngine.play(self.board)
-        elif game_phase == "mid":
+        value = random.uniform(0,1)
+
+        if (value < early_game_percentage):
+            return OpeningEngine.play(self.board)   
+        elif (value > early_game_percentage and value < early_game_percentage + mid_game_percentage):
             return GeneticEngine.play(self.board)
         else:
             return MiniMaxEngine.play(self.board)
