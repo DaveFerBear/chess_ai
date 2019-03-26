@@ -34,3 +34,5 @@ if __name__ == '__main__':
         print("---------recommended move----------------")
         move = utils.get_move_to_next_state(m.board, state.board)
         print(move)
+        print("---------game phase membership-----------")
+        print(utils.get_game_phase_membership(state.board))
