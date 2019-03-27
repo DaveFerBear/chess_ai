@@ -63,13 +63,14 @@ A combination of the Opening, Genetic, and MiniMax engines
 class HybridEngine(ChessEngine):
     def __init__(self):
         super()
+        self.phase_selector = FuzzyGamePhaseSelector()
     
     def play(self, chess_tree):
-        game_phase = utils.get_game_phase(self.board)
+        game_phase = phase_selector.get_game_phase(chess_tree.board_state)
 
-        if game_phase == "early":
-            return OpeningEngine.play(self.board)
-        elif game_phase == "mid":
-            return GeneticEngine.play(self.board)
+        if game_phase < 0.3:
+            return OpeningEngine.play(chess_tree.board_state)
+        elif < 0.6:
+            return GeneticEngine.play(chess_tree.board_state)
         else:
-            return MiniMaxEngine.play(self.board)
+            return MiniMaxEngine.play(chess_tree.board_state)
