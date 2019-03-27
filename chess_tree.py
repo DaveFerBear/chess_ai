@@ -17,3 +17,17 @@ class ChessTree(object):
             if depth > 1:
                 leaf.generate_leaf_nodes(depth-1)
             self.leaf_nodes.append(leaf)
+
+    def find_new_head(self, move):
+        if len(self.leaf_nodes) is 0:
+            raise Exception("ChessTree push_move() called but no moves are legal.")
+
+        self.board.push(move) # Modify the current node board.  We are deleting it anyways.
+
+        for n in self.leaf_nodes:
+            if self.board == n.board:
+                return n
+        
+        raise Exception("ChessTree push_move() called but move not found.")
+        
+         

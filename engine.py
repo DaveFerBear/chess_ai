@@ -18,8 +18,8 @@ class RandomEngine(ChessEngine):
         super()
     
     def play(self, chess_tree):
-        next_board_state = random.choice(chess_tree.leaf_boards)
-        move = utils.get_move_to_next_state(self.board, next_board_state)
+        next_board_state = random.choice(chess_tree.leaf_nodes)
+        move = utils.get_move_to_next_state(chess_tree.board, next_board_state)
         return move
 
 '''
