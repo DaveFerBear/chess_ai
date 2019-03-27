@@ -1,20 +1,21 @@
 from skfuzzy import control as ctrl
 import skfuzzy as fuzz
 import numpy as np
+import chess
 
 class FuzzyGamePhaseSelector(object):
     def get_game_phase(self, board):
-        num_pieces = 5
-        num_moves = 6
-        white_king_advanced_squares = 2
-        black_king_advanced_squares = 1
+        num_pieces = len(board.piece_map())
+        num_moves = board.fullmove_number
+        white_king_advanced_squares = int(board.king(chess.WHITE)/8) + 1
+        black_king_advanced_squares = 8 - int(board.king(chess.BLACK)/8)
 
         self.sim.input['num_pieces'] = num_pieces
         self.sim.input['num_moves'] = num_moves
         self.sim.input['white_king_advanced_squares'] = white_king_advanced_squares
         self.sim.input['black_king_advanced_squares'] = black_king_advanced_squares
         self.sim.compute()
-        
+
         return self.sim.output['game_phase']
 
     def __init__(self):

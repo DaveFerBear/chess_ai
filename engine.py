@@ -1,6 +1,7 @@
 import utils
 import random
 import Genetic.Genetic as Genetic
+from fuzzy_phase import FuzzyGamePhaseSelector
 
 class ChessEngine(object):
     def __init__(self):
