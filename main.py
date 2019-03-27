@@ -23,7 +23,7 @@ class ChessTree(object):
 if __name__ == '__main__':
     b = chess.Board()
     ct = ChessTree(b)
-    ct.generate_leaf_nodes(depth=3)
+    ct.generate_leaf_nodes(depth=2)
 
     for m in ct.leaf_nodes[0].leaf_nodes:
         print("---------current board state-------------")
@@ -31,8 +31,3 @@ if __name__ == '__main__':
         print("---------suggested next state------------")
         value, state = utils.minimax(m, 2)
         print(state.board)
-        print("---------recommended move----------------")
-        move = utils.get_move_to_next_state(m.board, state.board)
-        print(move)
-        print("---------game phase membership-----------")
-        print(utils.get_game_phase_membership(state.board))
