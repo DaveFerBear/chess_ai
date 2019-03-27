@@ -1,6 +1,7 @@
 import utils
 import random
 import Genetic.Genetic as Genetic
+from fuzzy_phase import FuzzyGamePhaseSelector
 
 class ChessEngine(object):
     def __init__(self):
@@ -62,18 +63,14 @@ A combination of the Opening, Genetic, and MiniMax engines
 class HybridEngine(ChessEngine):
     def __init__(self):
         super()
+        self.phase_selector = FuzzyGamePhaseSelector()
     
     def play(self, chess_tree):
-        membership = utils.get_game_phase_membership(self.board)
-        total = membership[0] + membership[1] + membership[2]
-        early_game_percentage = membership[0] / total
-        mid_game_percentage = membership[1] / total
+        game_phase = phase_selector.get_game_phase(chess_tree.board_state)
 
-        value = random.uniform(0,1)
-
-        if (value < early_game_percentage):
-            return OpeningEngine.play(self.board)   
-        elif (value > early_game_percentage and value < early_game_percentage + mid_game_percentage):
-            return GeneticEngine.play(self.board)
+        if game_phase < 0.3:
+            return OpeningEngine.play(chess_tree.board_state)
+        elif < 0.6:
+            return GeneticEngine.play(chess_tree.board_state)
         else:
-            return MiniMaxEngine.play(self.board)
+            return MiniMaxEngine.play(chess_tree.board_state)
