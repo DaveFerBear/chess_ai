@@ -72,5 +72,6 @@ class HybridEngine(ChessEngine):
             return OpeningEngine.play(chess_tree.board_state)
         elif < 0.6:
             return GeneticEngine.play(chess_tree.board_state)
+
         else:
             return MiniMaxEngine.play(chess_tree.board_state)
