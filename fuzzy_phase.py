@@ -42,11 +42,16 @@ class FuzzyGamePhaseSelector(object):
         black_king_advanced_squares['RETREATED'] = a
         black_king_advanced_squares['ADVANCED'] = b
 
-        game_phase.automf(names=['OPENING', 'MIDDLE', 'END'])
+        n = ['OPENING', 'MIDDLE', 'END']
+        # game_phase.automf(names=n)
+
+        game_phase['OPENING'] = fuzz.trimf(game_phase.universe, [0,0,.4])
+        game_phase['MIDDLE'] = fuzz.trimf(game_phase.universe, [.3,.5,.7])
+        game_phase['END'] = fuzz.trimf(game_phase.universe, [.6,1,1])
 
         # Add extra game phases for king file rules.
-        game_phase['PROBABLY_OPENING'] = fuzz.trapmf(game_phase.universe, [0,.1,.5,.6])/3
-        game_phase['PROBABLY_END'] = fuzz.trapmf(game_phase.universe, [.4,.5,.9,1])/3
+        game_phase['PROBABLY_OPENING'] = fuzz.trapmf(game_phase.universe, [0,.1,.5,.6])/4
+        game_phase['PROBABLY_END'] = fuzz.trapmf(game_phase.universe, [.4,.5,.9,1])/4
 
         rules = [
             ctrl.Rule(antecedent=num_pieces['HIGH'], consequent=game_phase['OPENING']),
