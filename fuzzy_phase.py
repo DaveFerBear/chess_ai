@@ -67,7 +67,3 @@ class FuzzyGamePhaseSelector(object):
 
         system = ctrl.ControlSystem(rules=rules)
         self.sim = ctrl.ControlSystemSimulation(system, flush_after_run=1) # TODO: when to flush.
-
-
-
-
