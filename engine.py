@@ -19,7 +19,7 @@ class RandomEngine(ChessEngine):
     
     def play(self, chess_tree):
         next_board_state = random.choice(chess_tree.leaf_nodes)
-        move = utils.get_move_to_next_state(chess_tree.board, next_board_state)
+        move = utils.get_move_to_next_state(chess_tree.board, next_board_state.board)
         return move
 
 '''
