@@ -31,7 +31,8 @@ class MiniMaxEngine(ChessEngine):
     
     def play(self, chess_tree):
         value, next_board_state = utils.minimax(chess_tree, 2)
-        move = utils.get_move_to_next_state(self.board, next_board_state)
+        move = utils.get_move_to_next_state(chess_tree.board, next_board_state.board)
+        print("MINIMAX ENGINE MOVE: {}".format(move))
         return move
 
 '''
@@ -40,9 +41,6 @@ Mitch to add play method and description here
 class OpeningEngine(ChessEngine):
     def __init__(self):
         super()
-    
-    def play(self, chess_tree):
-        raise Exception("play() function needs to be implemented.")
 
 '''
 Ross to add play method and description here

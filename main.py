@@ -28,7 +28,7 @@ def play_engines(e1, e2, print_out=False):
 if __name__ == '__main__':
 
     e1 = engine.GeneticEngine()
-    e2 = engine.RandomEngine()
+    e2 = engine.MiniMaxEngine()
 
     play_engines(e1, e2, print_out=True)
     
