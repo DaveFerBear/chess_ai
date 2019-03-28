@@ -20,7 +20,10 @@ def play_engines(e1, e2, print_out=False):
         ct.generate_leaf_nodes()
         white_to_play = not white_to_play # Change player
 
+        print("Strength: {} after {} moves.".format("%.2f" % utils.board_strength_using_piece_weights(ct.board), len(ct.board.move_stack)))
         print(ct.board)
+        
+    print("Winner: {}".format(type(cur_player)))
 
 
 if __name__ == '__main__':

@@ -26,12 +26,14 @@ def board_strength_using_piece_weights(board):
 '''
 Return the difference in number of available moves between each player
 Try a random move to check the number of legal moves of the opponent
+
+TODO: fix this function.
 '''
 def board_strength_using_legal_moves(board):
-    num_player_legal_moves = len(board.legal_moves)
+    num_player_legal_moves = len([None for _ in board.legal_moves])
     random_move = random.choice(board.legal_moves)
     board.push(random_move)
-    num_opponent_legal_moves = len(board.legal_moves)
+    num_opponent_legal_moves = len([None for _ in board.legal_moves])
     board.pop()
 
     if board.turn:
