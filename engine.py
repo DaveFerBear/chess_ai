@@ -43,7 +43,9 @@ class OpeningEngine(ChessEngine):
         super()
 
 '''
-Ross to add play method and description here
+Genetic engine derived from Sunfish
+Algorithm tuned board priors and piece weights
+Competed in a series of matches, with the winner moving on
 '''
 class GeneticEngine(ChessEngine):
     def __init__(self):
