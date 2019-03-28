@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 NEW_BOARD_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
 SAMPLE_FEN_0 = 'rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2'
 SAMPLE_FEN_1 = '5k2/ppp5/4P3/3R3p/6P1/1K2Nr2/PP3P2/8 b - - 1 32'
-SAMPLE_FEN_2 = '4k3/8/8/8/8/8/4P3/4K3 w - - 5 39'
+SAMPLE_FEN_2 = '8/8/4k3/8/4P3/4K3/8/8 w - - 5 39'
 
 SAMPLE_GAME_PGN_PATH = 'notebooks/datasets/Adams.pgn'
 

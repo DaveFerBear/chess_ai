@@ -199,7 +199,6 @@ class Position:
             wc = (False, False)
             if abs(j-i) == 2:
                 kp = (i+j)//2
-                print(kp)
                 board = put(board, A1 if j < i else H1, '.')
                 board = put(board, kp, 'R')
         # Pawn promotion, double move and en passant capture
