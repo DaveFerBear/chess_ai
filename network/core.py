@@ -9,6 +9,7 @@ from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD, Adadelta, Adam, RMSprop
 from keras.callbacks import ModelCheckpoint, TensorBoard
+from .. import utils
 
 BOARD_SPACES = 64
 ROWS = 8
@@ -24,6 +25,22 @@ letter_lookup = {
     'g':6,
     'h':7
 }
+piece_lookup = {
+    'r':0,
+    'n':1,
+    'b':2,
+    'q':3,
+    'k':4,
+    'p':5,
+    'R':6,
+    'N':7,
+    'B':8,
+    'Q':9,
+    'K':10,
+    'P':11,
+    '.':-1
+}
+
 piece_lookup = {
     'r':0,
     'n':1,
@@ -60,9 +77,9 @@ def make_net(inshape, outshape):
 
     model.add(Flatten())
 
-    model.add(Dense(512))
+    model.add(Dense(1024))
     model.add(Activation('relu'))
-    model.add(Dense(512))
+    model.add(Dense(1024))
     model.add(Activation('relu'))
 
     model.add(Dense(outshape, activation='sigmoid'))
@@ -70,6 +87,7 @@ def make_net(inshape, outshape):
     model.compile(loss=keras.losses.mean_squared_error,
                 optimizer=Adam(lr=0.001),
                 metrics=['mse'])
+
 
     return model
 
