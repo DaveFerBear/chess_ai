@@ -1,6 +1,7 @@
 import utils
 import random
 import Genetic.Genetic as Genetic
+from fuzzy_phase import FuzzyGamePhaseSelector
 
 class ChessEngine(object):
     def __init__(self):
@@ -17,8 +18,8 @@ class RandomEngine(ChessEngine):
         super()
     
     def play(self, chess_tree):
-        next_board_state = random.choice(chess_tree.leaf_boards)
-        move = utils.get_move_to_next_state(self.board, next_board_state)
+        next_board_state = random.choice(chess_tree.leaf_nodes)
+        move = utils.get_move_to_next_state(chess_tree.board, next_board_state.board)
         return move
 
 '''
@@ -30,7 +31,8 @@ class MiniMaxEngine(ChessEngine):
     
     def play(self, chess_tree):
         value, next_board_state = utils.minimax(chess_tree, 2)
-        move = utils.get_move_to_next_state(self.board, next_board_state)
+        move = utils.get_move_to_next_state(chess_tree.board, next_board_state.board)
+        print("MINIMAX ENGINE MOVE: {}".format(move))
         return move
 
 '''
@@ -39,9 +41,6 @@ Mitch to add play method and description here
 class OpeningEngine(ChessEngine):
     def __init__(self):
         super()
-    
-    def play(self, chess_tree):
-        raise Exception("play() function needs to be implemented.")
 
 '''
 Ross to add play method and description here
@@ -62,18 +61,13 @@ A combination of the Opening, Genetic, and MiniMax engines
 class HybridEngine(ChessEngine):
     def __init__(self):
         super()
+        self.phase_selector = FuzzyGamePhaseSelector()
     
     def play(self, chess_tree):
-        membership = utils.get_game_phase_membership(self.board)
-        total = membership[0] + membership[1] + membership[2]
-        early_game_percentage = membership[0] / total
-        mid_game_percentage = membership[1] / total
-
-        value = random.uniform(0,1)
-
-        if (value < early_game_percentage):
-            return OpeningEngine.play(self.board)   
-        elif (value > early_game_percentage and value < early_game_percentage + mid_game_percentage):
-            return GeneticEngine.play(self.board)
+        game_phase = phase_selector.get_game_phase(chess_tree.board_state)
+        if game_phase < 0.3:
+            return OpeningEngine.play(chess_tree.board_state)
+        elif game_phase < 0.6:
+            return GeneticEngine.play(chess_tree.board_state)
         else:
-            return MiniMaxEngine.play(self.board)
+            return MiniMaxEngine.play(chess_tree.board_state)

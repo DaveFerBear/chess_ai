@@ -165,11 +165,9 @@ class Game:
         for move in self.moves:
             if i%2 == 0:
                 self.white.pos = self.white.pos.move(self.white.parse(move, True))
-                print(move)
                 sunfish.print_pos(self.white.pos.rotate())
             else:
                 self.white.pos = self.white.pos.move(self.white.parse(move, False))
-                print(move)
                 sunfish.print_pos(self.white.pos)
             i += 1
             time.sleep(1)

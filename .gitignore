@@ -105,4 +105,5 @@ venv.bak/
 
 # MacOS System
 .DS_Store
+*.icloud
 

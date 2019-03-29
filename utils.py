@@ -26,12 +26,14 @@ def board_strength_using_piece_weights(board):
 '''
 Return the difference in number of available moves between each player
 Try a random move to check the number of legal moves of the opponent
+
+TODO: fix this function.
 '''
 def board_strength_using_legal_moves(board):
-    num_player_legal_moves = len(board.legal_moves)
+    num_player_legal_moves = len([None for _ in board.legal_moves])
     random_move = random.choice(board.legal_moves)
     board.push(random_move)
-    num_opponent_legal_moves = len(board.legal_moves)
+    num_opponent_legal_moves = len([None for _ in board.legal_moves])
     board.pop()
 
     if board.turn:
@@ -49,35 +51,39 @@ def weighted_board_strength(board, α=1.0, β=1.0):
 Implementation of minimax with alpha-beta pruning.
 Written as a util so any chess engines can use.
 '''
-def minimax(chess_tree, depth, is_maximizing_player=True, alpha=-float('inf'), beta=float('inf')):
+def minimax(chess_tree, alpha=-float('inf'), beta=float('inf'), current_depth = 0):
     # If node has no children return its board value
     if len(chess_tree.leaf_nodes) == 0:
         return board_strength_using_piece_weights(chess_tree.board), chess_tree
     
-    if is_maximizing_player:
+    if chess_tree.board.turn:
         best_value = -float('inf') 
-        best_board_state = None
+        best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, depth + 1, False, alpha, beta)
+            value, state = minimax(child, alpha, beta, current_depth + 1)
             if value > best_value:
                 best_value = value
                 best_board_state = state
             alpha = max(alpha, best_value)
             if beta <= alpha:
                 break
+        if current_depth == 1:
+            return best_value, chess_tree
         return best_value, best_board_state
 
     else:
         best_value = float('inf') 
-        best_board_state = None
+        best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, depth + 1, True, alpha, beta)
+            value, state = minimax(child, alpha, beta, current_depth + 1)
             if value < best_value:
                 best_value = value
                 best_board_state = state
             beta = min(beta, best_value)
             if beta <= alpha:
                 break
+        if current_depth == 1:
+            return best_value, chess_tree
         return best_value, best_board_state
 
 '''
@@ -91,20 +97,3 @@ def get_move_to_next_state(current_board_state, next_board_state):
             if new_board_state == next_board_state:
                 return move
     return None
-
-
-'''
-Apply fuzzy logic to determine the phase of the game based on 
-remaining pieces and number of moves played
-'''
-def get_game_phase_membership(current_board_state):
-    num_turns = current_board_state.fullmove_number
-    temp_board_state = current_board_state.copy(stack=True)
-    num_pieces = 0 
-    for square in range(0, 64):
-        if temp_board_state.remove_piece_at(square) != None:
-            num_pieces = num_pieces + 1
-    early_game_membership = ((num_pieces / 32) + 1 - min(1, num_turns / 20)) / 2
-    mid_game_membership = (0.5 + ((num_pieces - 16) / 32) + 1 - abs(num_turns - 10) / 10) / 2
-    late_game_membership = (1 - (num_pieces / 32) + min(1, num_turns / 20)) / 2
-    return (early_game_membership, mid_game_membership, late_game_membership)
