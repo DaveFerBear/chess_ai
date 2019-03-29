@@ -9,7 +9,7 @@ from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD, Adadelta, Adam, RMSprop
 from keras.callbacks import ModelCheckpoint, TensorBoard
-from .. import utils
+import utils
 
 BOARD_SPACES = 64
 ROWS = 8
@@ -41,39 +41,47 @@ piece_lookup = {
     '.':-1
 }
 
-piece_lookup = {
-    'r':0,
-    'n':1,
-    'b':2,
-    'q':3,
-    'k':4,
-    'p':5,
-    'R':6,
-    'N':7,
-    'B':8,
+piece_values = {
+    'r':-5,
+    'n':-3,
+    'b':-3.15,
+    'q':-9,
+    'k':-9000,
+    'p':-1,
+    'R':5,
+    'N':3,
+    'B':3.15,
     'Q':9,
-    'K':10,
-    'P':11,
-    '.':-1
+    'K':9000,
+    'P':1,
 }
 
 class Model:
-    def __init__(self, path='models/weights.44-0.10.hdf5'):
+    # def __init__(self, path='network/models/weights.44-0.10.hdf5'):
+    def __init__(self, path='network/models/weights.105-0.07.hdf5'):
         self.model = make_net((8, 8, 13), 1)
         self.model.load_weights(path)
     
-    def inference(self, board, black_or_white):
+    def inference(self, board, black_or_white, percent_model=0.5):
         board_data = board2array(board, black_or_white)
         output = self.model.predict(np.reshape(board_data, (1, 8, 8, 13)))
+        imbalance = get_piece_imbalance(board)
+        output = min(max((percent_model)*output + (1-percent_model)*imbalance, 0), 1)
         return output
+
+def get_piece_imbalance(board):
+    total = 0
+    strboard = str(board)
+    for char in strboard:
+        if char in piece_values:
+            total += piece_values[char]
+    return total/40.0
 
 def make_net(inshape, outshape):
     model = Sequential()
-    model.add(Conv2D(32, kernel_size=(2, 2), padding='same', activation='relu', input_shape=inshape))
-    model.add(Conv2D(32, kernel_size=(2, 2), padding='same', activation='relu'))
-
-    model.add(Conv2D(64, kernel_size=(2, 2), padding='same', activation='relu'))
-    model.add(Conv2D(64, kernel_size=(2, 2), padding='same', activation='relu'))
+    model.add(Conv2D(32, kernel_size=(1, 1), padding='same', activation='relu', input_shape=inshape))
+    model.add(Conv2D(64, kernel_size=(1, 1), padding='same', activation='relu'))
+    model.add(Conv2D(128, kernel_size=(1, 1), padding='same', activation='relu'))
 
     model.add(Flatten())
 
@@ -185,7 +193,7 @@ def print_bw_and_board(black_or_white, board):
 
 if __name__ == '__main__':
     num_games = 100
-    pgn = open("data/fisc.pgn")
+    pgn = open("network/data/qp.pgn")
     game = chess.pgn.read_game(pgn) 
     model = Model()
     board = game.board()
