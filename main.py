@@ -16,7 +16,7 @@ def play_engines(e1, e2, print_out=False):
         print("Selected Move: {}".format(move))
 
         ct = ct.find_new_head(move) # Travel down chess tree
-        ct.generate_leaf_nodes()
+        ct.generate_leaf_nodes(depth=2)
         white_to_play = not white_to_play # Change player
 
         print("Strength: {} after {} moves.".format("%.2f" % utils.board_strength_using_piece_weights(ct.board), len(ct.board.move_stack)))        

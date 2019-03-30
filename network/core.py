@@ -9,6 +9,7 @@ from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD, Adadelta, Adam, RMSprop
 from keras.callbacks import ModelCheckpoint, TensorBoard
+import utils
 
 BOARD_SPACES = 64
 ROWS = 8
@@ -40,20 +41,52 @@ piece_lookup = {
     '.':-1
 }
 
+piece_values = {
+    'r':-5,
+    'n':-3,
+    'b':-3.15,
+    'q':-9,
+    'k':-9000,
+    'p':-1,
+    'R':5,
+    'N':3,
+    'B':3.15,
+    'Q':9,
+    'K':9000,
+    'P':1,
+}
+
+class Model:
+    # def __init__(self, path='network/models/weights.44-0.10.hdf5'):
+    def __init__(self, path='network/models/weights.105-0.07.hdf5'):
+        self.model = make_net((8, 8, 13), 1)
+        self.model.load_weights(path)
+    
+    def inference(self, board, black_or_white, percent_model=0.5):
+        board_data = board2array(board, black_or_white)
+        output = self.model.predict(np.reshape(board_data, (1, 8, 8, 13)))
+        imbalance = get_piece_imbalance(board)
+        output = min(max((percent_model)*output + (1-percent_model)*imbalance, 0), 1)
+        return output
+
+def get_piece_imbalance(board):
+    total = 0
+    strboard = str(board)
+    for char in strboard:
+        if char in piece_values:
+            total += piece_values[char]
+    return total/40.0
+
 def make_net(inshape, outshape):
     model = Sequential()
-    model.add(Conv2D(128, kernel_size=(2, 2), padding='same',
-                    input_shape=inshape))
-    model.add(Activation('relu'))
-
-    model.add(Conv2D(128, kernel_size=(2, 2), padding='same'))
-    model.add(Activation('relu'))
+    model.add(Conv2D(32, kernel_size=(1, 1), padding='same', activation='relu', input_shape=inshape))
+    model.add(Conv2D(64, kernel_size=(1, 1), padding='same', activation='relu'))
+    model.add(Conv2D(128, kernel_size=(1, 1), padding='same', activation='relu'))
 
     model.add(Flatten())
 
     model.add(Dense(1024))
     model.add(Activation('relu'))
-
     model.add(Dense(1024))
     model.add(Activation('relu'))
 
@@ -62,6 +95,8 @@ def make_net(inshape, outshape):
     model.compile(loss=keras.losses.mean_squared_error,
                 optimizer=Adam(lr=0.001),
                 metrics=['mse'])
+
+
     return model
 
 def board2array(board, black_or_white):
@@ -79,7 +114,15 @@ def board2array(board, black_or_white):
             idx += 1
     return board_data
 
-def main(num_games=1000):
+def inference(board, black_or_white):
+    board_data = board2array(board, black_or_white)
+    print(board_data)
+    model = make_net((8, 8, 13), 1)
+    model.load_weights('models/weights.40-0.00.hdf5')
+    output = model.predict(np.reshape(board_data, (1, 8, 8, 13)))
+    print(output)
+
+def train(num_games=1000):
     dataset_x = []
     dataset_y = []
     posns = []
@@ -141,6 +184,25 @@ def main(num_games=1000):
 
     model.fit(dataset_x, dataset_y, epochs=200, batch_size=64, callbacks=callbacks, validation_split=0.1)
 
+def print_bw_and_board(black_or_white, board):
+    print(board)
+    if black_or_white:
+        print("White plays")
+        return
+    print("Black plays")
+
 if __name__ == '__main__':
     num_games = 100
-    main(num_games=num_games)
+    pgn = open("network/data/qp.pgn")
+    game = chess.pgn.read_game(pgn) 
+    model = Model()
+    board = game.board()
+    bw = True
+
+    for move in game.mainline_moves():
+        print_bw_and_board(bw, board)
+        print(model.inference(board, bw))
+        bw = not bw
+        board.push(move)
+
+    

@@ -51,35 +51,39 @@ def weighted_board_strength(board, α=1.0, β=1.0):
 Implementation of minimax with alpha-beta pruning.
 Written as a util so any chess engines can use.
 '''
-def minimax(chess_tree, depth, is_maximizing_player=True, alpha=-float('inf'), beta=float('inf')):
+def minimax(chess_tree, alpha=-float('inf'), beta=float('inf'), current_depth = 0):
     # If node has no children return its board value
     if len(chess_tree.leaf_nodes) == 0:
         return board_strength_using_piece_weights(chess_tree.board), chess_tree
     
-    if is_maximizing_player:
+    if chess_tree.board.turn:
         best_value = -float('inf') 
-        best_board_state = None
+        best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, depth + 1, False, alpha, beta)
+            value, state = minimax(child, alpha, beta, current_depth + 1)
             if value > best_value:
                 best_value = value
                 best_board_state = state
             alpha = max(alpha, best_value)
             if beta <= alpha:
                 break
+        if current_depth == 1:
+            return best_value, chess_tree
         return best_value, best_board_state
 
     else:
         best_value = float('inf') 
-        best_board_state = None
+        best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, depth + 1, True, alpha, beta)
+            value, state = minimax(child, alpha, beta, current_depth + 1)
             if value < best_value:
                 best_value = value
                 best_board_state = state
             beta = min(beta, best_value)
             if beta <= alpha:
                 break
+        if current_depth == 1:
+            return best_value, chess_tree
         return best_value, best_board_state
 
 '''
