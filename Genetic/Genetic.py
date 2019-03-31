@@ -6,7 +6,7 @@ import Genetic.sunfish as sunfish
 from Genetic.PST import PST
 
 MAX_NUM_MOVES = 200
-SEARCH_TIME = 1
+SEARCH_TIME = 0.01
 
 
 class Engine:

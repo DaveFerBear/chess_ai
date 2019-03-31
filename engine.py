@@ -1,7 +1,10 @@
 import utils
 import random
+import sys
 import Genetic.Genetic as Genetic
-from fuzzy_phase import FuzzyGamePhaseSelector
+from network import core
+
+# from fuzzy_phase import FuzzyGamePhaseSelector
 
 class ChessEngine(object):
     def __init__(self):
@@ -27,11 +30,13 @@ Engine using exclusively minimax with alpha-beta pruning.
 '''
 class MiniMaxEngine(ChessEngine):
     def __init__(self):
+        self.model = core.Model()
         super()
     
     def play(self, chess_tree):
-        value, next_board_state = utils.minimax(chess_tree, 2)
-        move = utils.get_move_to_next_state(chess_tree.board, next_board_state.board)
+        print(chess_tree)
+        value, next_board_state = utils.minimax(self.model, chess_tree, 2)
+        move = next_board_state.board.peek()
         print("MINIMAX ENGINE MOVE: {}".format(move))
         return move
 
@@ -40,7 +45,28 @@ Mitch to add play method and description here
 '''
 class OpeningEngine(ChessEngine):
     def __init__(self):
+        self.model = core.Model()
+        print("Created Model")
         super()
+
+    def play(self, chess_tree):
+        best_score = 0
+        best_move = None
+
+        chess_tree.generate_leaf_nodes(depth=1)
+        leaves = []
+        for leaf in chess_tree.leaf_nodes:
+            # print(leaf.board)
+            # print(leaf.board.turn)
+            # print(leaf.board.peek())
+            score = self.model.inference(leaf.board, leaf.board.turn)
+            # print(score)
+
+            if best_move == None or score > best_score:
+                best_move = leaf.board.peek()
+                best_score = score
+        sys.exit()
+        return best_move
 
 '''
 Ross to add play method and description here

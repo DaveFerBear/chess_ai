@@ -1,5 +1,6 @@
 import chess
 import random
+from network import core
 
 PIECE_WEIGHTS = {
     chess.PAWN: 1,
@@ -51,16 +52,17 @@ def weighted_board_strength(board, α=1.0, β=1.0):
 Implementation of minimax with alpha-beta pruning.
 Written as a util so any chess engines can use.
 '''
-def minimax(chess_tree, alpha=-float('inf'), beta=float('inf'), current_depth = 0):
+def minimax(model, chess_tree, alpha=-float('inf'), beta=float('inf'), current_depth = 0):
     # If node has no children return its board value
     if len(chess_tree.leaf_nodes) == 0:
-        return board_strength_using_piece_weights(chess_tree.board), chess_tree
+        return model.inference(chess_tree.board, chess_tree.board.turn), chess_tree
+        # return board_strength_using_piece_weights(chess_tree.board), chess_tree
     
     if chess_tree.board.turn:
         best_value = -float('inf') 
         best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, alpha, beta, current_depth + 1)
+            value, state = minimax(model, child, alpha, beta, current_depth + 1)
             if value > best_value:
                 best_value = value
                 best_board_state = state
@@ -75,7 +77,7 @@ def minimax(chess_tree, alpha=-float('inf'), beta=float('inf'), current_depth = 
         best_value = float('inf') 
         best_board_state = chess_tree
         for child in chess_tree.leaf_nodes:
-            value, state = minimax(child, alpha, beta, current_depth + 1)
+            value, state = minimax(model, child, alpha, beta, current_depth + 1)
             if value < best_value:
                 best_value = value
                 best_board_state = state

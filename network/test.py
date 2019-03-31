@@ -1,6 +1,7 @@
 import core
 import chess
 import sys
+import chess.svg
 
 if __name__ == '__main__':
     num_games = 100
@@ -8,6 +9,7 @@ if __name__ == '__main__':
     bw = True
     board = chess.Board()
 
+    chess.svg.board(board=board)
     while not board.is_checkmate():
         print(board)
         legal_moves = board.generate_legal_moves()

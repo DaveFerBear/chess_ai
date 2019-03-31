@@ -9,7 +9,6 @@ from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD, Adadelta, Adam, RMSprop
 from keras.callbacks import ModelCheckpoint, TensorBoard
-import utils
 
 BOARD_SPACES = 64
 ROWS = 8
@@ -62,7 +61,7 @@ class Model:
         self.model = make_net((8, 8, 13), 1)
         self.model.load_weights(path)
     
-    def inference(self, board, black_or_white, percent_model=0.5):
+    def inference(self, board, black_or_white, percent_model=0.90):
         board_data = board2array(board, black_or_white)
         output = self.model.predict(np.reshape(board_data, (1, 8, 8, 13)))
         imbalance = get_piece_imbalance(board)
