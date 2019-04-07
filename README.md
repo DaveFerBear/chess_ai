@@ -1,5 +1,5 @@
 # chess_ai
-Using neural networks to prune the search tree for a chess engine.
+Using neural networks, fuzzy logic, and various heuristics to prune the search tree for a chess engine.
 
 ## Notes
 * This project requires python 3.6 (3.7 not yet supported by skfuzzy).
