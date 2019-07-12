@@ -1,7 +1,7 @@
 # chess_ai
 Using neural networks, fuzzy logic, and various heuristics to prune the search tree for a chess engine.
 
-![Chess AI Poster][poster.png]
+![Chess AI Poster][poster]
 
 [poster]: poster.png "Poster"
 
