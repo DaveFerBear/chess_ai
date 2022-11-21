@@ -4,5 +4,5 @@ NumPy >= 1.6
 SciPy >= 0.9
 NetworkX >= 1.9
 
-tensorflow==1.13.1
+tensorflow==2.9.3
 keras==2.2.4
